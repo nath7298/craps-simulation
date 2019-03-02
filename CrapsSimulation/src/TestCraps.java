@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 // about to push to remote repo
 // pushing to nath7298 first time
+// second commit from nath7298
 
 /**
  * Starting application for running multiple simulations of CrapsGame. This
