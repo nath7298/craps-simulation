@@ -6,7 +6,7 @@
 
 public class PlayWithInheritance
 {
-	public static int RUN_EXAMPLE = 1; // change this to try different behaviors
+	public static int RUN_EXAMPLE = 8; // change this to try different behaviors
 										// below
 
 	public static void main(String[] args)
@@ -89,9 +89,27 @@ public class PlayWithInheritance
 			int result = dice.getLastRoll();
 
 			StdOut.printf("Roll of '%s' and '%s' is: %d.\n", aSingleDie, crooked1, result);
+		}			
+		else if (RUN_EXAMPLE == 7) //This one tests the static overriding method in CrookedDie1
+		{
+			Die myDie = new CrookedDie1();
+			
+			StdOut.println("myDie To String: '" + myDie.toString() + "'");			
+			StdOut.println("myDie To String when calling CrookedDie1 TestStatic: '" + myDie.testStatic().toString() + "'");
+		}
+		
+		else if (RUN_EXAMPLE == 8)  //This one plays with the predictable Die implementation
+		{
+			PredictableDie myDie = new PredictableDie();
+			
+			myDie.setThrowSequence(new int[] {1,2,3});
+			myDie.roll();
+			StdOut.println("myDie's roll: '" + myDie.getLastRoll());		
+
 		}
 
 		StdOut.println();
+
 	}
 
 	/**

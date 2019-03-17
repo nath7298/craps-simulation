@@ -1,35 +1,43 @@
+//import edu.princeton.cs.introcs.StdOut;
+
 /**
- * Dice represents a single pair of rollable Die objects, randomly generating
- * sums of their two values
+ * Dice represents a single pair of rollable PredictableDie objects, summing the value of the predefined rolls
  * 
  * This is a Javadoc comment: add more to your finished class below
  * 
- * @author eric
+ * @author Chris Nathan
  *
  */
-public class Dice
+ 
+public class PredictableDice
 {
 	// Instance fields (variables) may be declared anywhere in class body
 	// Convention: put at top
 
 	private int lastRoll;
-	private Die die1;
-	private Die die2;
+	private PredictableDie die1;
+	private PredictableDie die2;
 
 	// Constructors (object initializers) also can be declared anywhere
 	// Convention: after instance fields/variables
 
-	public Dice()
+	public PredictableDice()
 	{
 		// initialize instance variables die1 and die2 by
 		// creating a new instance of each
 
-		this.die1 = new Die();
-		this.die2 = new Die();
-		//this.roll();
+		this.die1 = new PredictableDie();
+		this.die2 = new PredictableDie();
+		//this.roll(); //commenting this out to mirror intialization behavior of die class
+	}
+	
+	protected void setThrowSequence(int[] sequence1, int[] sequence2) {
+		this.die1.setThrowSequence(sequence1);
+		this.die2.setThrowSequence(sequence2);
 	}
 
-	public Dice(Die die1, Die die2) // overloaded constructor
+
+	public PredictableDice(PredictableDie die1, PredictableDie die2) // overloaded constructor
 	{
 		this.die1 = die1;
 		this.die2 = die2;
@@ -62,7 +70,7 @@ public class Dice
 
 	public String toString()
 	{
-		return "Roll of " + getLastRoll() + ": " + die1.getLastRoll() + " + " + die2.getLastRoll();
+		return "Dice with last roll: " + getLastRoll() + " => " + die1.getLastRoll() + " + " + die2.getLastRoll();
 
 	}
 
@@ -72,8 +80,8 @@ public class Dice
 
 	public static void main(String[] args)
 	{
-		Dice dice1 = new Dice();
-		int snakeEyesCount = 0;
+		PredictableDice dice1 = new PredictableDice();
+		int doubleSkunkCount = 0;
 
 		for (int i = 0; i < NUM_TRIALS; i++)
 		{
@@ -81,10 +89,10 @@ public class Dice
 			StdOut.println(dice1);
 			
 			if (dice1.getLastRoll() == 2)
-				snakeEyesCount++;
+				doubleSkunkCount++;
 		}
 
-		StdOut.println("Actual count: " + snakeEyesCount);
+		StdOut.println("Actual count: " + doubleSkunkCount);
 		StdOut.println("Expected count: " + (NUM_TRIALS / 36.0));
 	}
 }
